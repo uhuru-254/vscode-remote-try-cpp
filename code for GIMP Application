@@ -1,0 +1,30 @@
+ #include <gtk/gtk.h>
+ #include <libgimp/gimp.h>
+ int main (int argc, char *argv[])
+ {
+    /* Initialize GIMP */ 
+   gimp_init(&argc, &argv);
+
+ /* Create a new image window */
+ GimpImage *image = gimp_image_new(640, 480, GIMP_RGB); 
+GimpDisplay *display = gimp_display_new(image); 
+gtk_widget_show(GTK_WIDGET(display)); 
+
+/* Load an image file */ 
+GimpImage *loaded_image = gimp_file_load(image, "path/to/file.jpg", NULL); 
+gimp_display_new(loaded_image); 
+
+/* Edit the loaded image */ 
+gimp_context_set_brush(brush); 
+gimp_edit_bucket_fill(loaded_image, GIMP_FILL_FOREGROUND, 0, 0);
+
+ /* Save the edited image */ 
+gimp_file_save(loaded_image, "path/to/new_file.jpg", "jpg"); 
+
+/* Clean up resources */ 
+gtk_widget_destroy(GTK_WIDGET(display));
+ gimp_image_delete(image); 
+gimp_image_delete(loaded_image); 
+
+return 0; 
+}
