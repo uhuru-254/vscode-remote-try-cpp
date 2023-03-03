@@ -1,0 +1,46 @@
+using System; 
+using System.IO. 
+
+namespace Media Manager
+ { 
+    class Program	
+      { 
+        static void Main (string [] args)
+         { 
+           Console. WriteLine ("Welcome to the Media Manager!"); 
+
+// Get the path of the media folder
+ Console. WriteLine ("Please enter the path of the media folder:"); 
+string mediaFolderPath = Console.ReadLine(). 
+
+// Check if the folder exists 
+if (!Directory.Exists(mediaFolderPath)) 
+{ 
+   Console.WriteLine("The folder does not exist!");
+    return;
+ } 
+
+// Get the list of media files in the folder
+ string[] mediaFiles = Directory.GetFiles(mediaFolderPath); 
+
+// Loop through the files and process them 
+foreach (string mediaFile in mediaFiles) 
+{ 
+// Get the file name 
+string mediaFileName = Path.GetFileName(mediaFile); 
+
+// Tag the file 
+TagManager.TagFile(mediaFile); 
+
+// Sort the file 
+SortManager.SortFile(mediaFile); 
+
+// Upload the file to the cloud 
+CloudManager.UploadFile(mediaFile); 
+
+Console.WriteLine($"Processed {mediaFileName}");
+ }
+ Console.WriteLine("Finished processing all media files"); 
+     }
+   }
+ }
