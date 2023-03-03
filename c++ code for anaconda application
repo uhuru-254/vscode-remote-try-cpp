@@ -1,0 +1,28 @@
+#include <iostream>
+ #include <string> 
+
+// Anaconda Library 
+#include <anaconda/environment.h>
+ #include <anaconda/package.h> 
+#include <anaconda/version.h>
+
+ int main() { 
+   // Create Anaconda Environment 
+anaconda::Environment env = anaconda::Environment::create();
+
+  // Install Packages 
+env.installPackage("numpy"); 
+env.installPackage("pandas"); 
+env.installPackage("matplotlib"); 
+
+// List Installed Packages 
+std::vector<anaconda::Package> packages = env.listPackages(); 
+for (const anaconda::Package& package : packages) { 
+   std::cout << package.name() << " " << package.version() << std::endl; 
+}
+ 
+// Create New Environment 
+std::string newEnvName = "my-env"; 
+anaconda::Environment newEnv = env.createEnvironment(newEnvName); 
+// Install Packages 
+newEnv.installPackage("scikit
