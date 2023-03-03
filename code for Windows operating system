@@ -1,0 +1,6 @@
+provider ntoskrnl { 
+        provider-module("ntoskrnl.exe"); 
+        probe kernel.function("NtCreateFile") { 
+               printf("File Name: %s, File Handle: %d\n", user_string($FileName), $FileHandle); 
+    } 	
+}
